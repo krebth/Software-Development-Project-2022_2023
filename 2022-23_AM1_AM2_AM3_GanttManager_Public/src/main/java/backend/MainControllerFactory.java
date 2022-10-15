@@ -3,12 +3,12 @@ package backend;
 import dom2app.SimpleTableModel;
 import file.OpenFile;
 import file.Task;
+import filters.FilterTasks;
 import sort.Compare;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MainControllerFactory implements IMainController {
-	private ArrayList<Task> mainList;
+	private ArrayList<Task> sortedList;
 	private String name = "";
 	private String prjName = "";
 	private String[] pColumnNames = {"TaskId" , "TaskText", "MamaId","Start" , "End" , "Cost" };
@@ -21,62 +21,44 @@ public class MainControllerFactory implements IMainController {
 	public SimpleTableModel load(String fileName, String delimiter) {
 		OpenFile file = new OpenFile(fileName, delimiter);
 		Compare compareTasks = new Compare(file.toTaskList());
-		mainList = compareTasks.sort();
-		ArrayList<String[]> stringTaskList = new ArrayList<String[]>();
-		stringTaskList = compareTasks.toStringTaskList(mainList);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		/*HashMap<Integer,ArrayList<Integer>> posMamaID = new HashMap<Integer,ArrayList<Integer>>();
-		//ArrayList<Integer> posMamaID = new ArrayList<Integer>();
-		ArrayList<Integer> topLevel = new ArrayList<Integer>();
-		ArrayList<Integer> topLevelID = new ArrayList<Integer>();
-		//ArrayList<String[]> sortedTaskList = new ArrayList<String[]>();
-		
-		
-		taskList = compare(topLevel,topLevelID,posMamaID,taskList);*/
-		
-		SimpleTableModel simpleTable = new SimpleTableModel(name,prjName,pColumnNames,stringTaskList);
+		sortedList = compareTasks.sort();
+		ArrayList<String[]> stringArrayTaskList = new ArrayList<String[]>();
+		stringArrayTaskList = compareTasks.toArrayStringTaskList(sortedList);
+		SimpleTableModel simpleTable = new SimpleTableModel(name,prjName,pColumnNames,stringArrayTaskList);
 		return simpleTable;
 	}
 
 	@Override
 	public SimpleTableModel getTasksByPrefix(String prefix) {
-		/*String name = "";
-		String prjName = "";
-		String[] pColumnNames = {"TaskId" , "TaskText", "MamaId","Start" , "End" , "Cost" };
-		SimpleTableModel simpleTable = new SimpleTableModel(name,prjName,pColumnNames,mainList);*/
-		return null;
+		FilterTasks filter = new FilterTasks(sortedList);
+		ArrayList<Task> samePrefix = new ArrayList<Task>();
+		ArrayList<String[]> stringArrayTaskList = new ArrayList<String[]>();
+		samePrefix = filter.getByPrefix(prefix);
+		stringArrayTaskList = filter.toArrayStringTaskList(samePrefix);
+		SimpleTableModel simpleTable = new SimpleTableModel(name,prjName,pColumnNames,stringArrayTaskList);
+		return simpleTable;
 	}
 
 	@Override
 	public SimpleTableModel getTaskById(int id) {
-		/*ArrayList<String[]> IDList = new ArrayList<String[]>();
-		String name = "";
-		String prjName = "";
-		String[] pColumnNames = {"TaskId" , "TaskText", "MamaId","Start" , "End" , "Cost" };
-		for (int i=0; i<mainList.size(); i++) {
-			if (id==Integer.parseInt(mainList.get(i)[0])) {
-				IDList.add(mainList.get(i));
-				break;
-			}
-		}
-		SimpleTableModel simpleTable = new SimpleTableModel(name,prjName,pColumnNames,IDList);*/
-		return null;
+		FilterTasks filter = new FilterTasks(sortedList);
+		ArrayList<Task> IDList = new ArrayList<Task>();
+		ArrayList<String[]> stringArrayTaskList = new ArrayList<String[]>();
+		IDList = filter.getByID(id);
+		stringArrayTaskList = filter.toArrayStringTaskList(IDList);
+		SimpleTableModel simpleTable = new SimpleTableModel(name,prjName,pColumnNames,stringArrayTaskList);
+		return simpleTable;
 	}
 
 	@Override
 	public SimpleTableModel getTopLevelTasks() {
-		// TODO Auto-generated method stub
-		return null;
+		FilterTasks filter = new FilterTasks(sortedList);
+		ArrayList<Task> topLevelList = new ArrayList<Task>();
+		ArrayList<String[]> stringArrayTaskList = new ArrayList<String[]>();
+		topLevelList = filter.getTopLevel();
+		stringArrayTaskList = filter.toArrayStringTaskList(topLevelList);
+		SimpleTableModel simpleTable = new SimpleTableModel(name,prjName,pColumnNames,stringArrayTaskList);
+		return simpleTable;
 	}
 
 	@Override

@@ -47,14 +47,13 @@ public class Compare {
 		return topLevelTasks;
 	}
 	
-	public ArrayList<Task> sortTopLevelTasks(ArrayList<Task> topLevelTasks) {
-
-		ArrayList<Task> sortedTopLevelTasks = new ArrayList<Task>();
-		while (!topLevelTasks.isEmpty()) {
+	public ArrayList<Task> sortTasks(ArrayList<Task> tasks) {
+		ArrayList<Task> sortedTasks = new ArrayList<Task>();
+		while (!tasks.isEmpty()) {
 			ArrayList<Task> sameStart = new ArrayList<Task>();
-			Task minTask = topLevelTasks.get(0);
+			Task minTask = tasks.get(0);
 			sameStart.add(minTask);
-			for (Task i: topLevelTasks) {
+			for (Task i: tasks) {
 				if (minTask.getID()!=i.getID()) {
 					if(minTask.getStart()>i.getStart()) {
 						minTask = i;
@@ -66,8 +65,8 @@ public class Compare {
 				}
 			}
 			if (sameStart.size()==1) {
-				sortedTopLevelTasks.add(minTask);
-				topLevelTasks.remove(minTask);
+				sortedTasks.add(minTask);
+				tasks.remove(minTask);
 			} else {
 				while (!sameStart.isEmpty()) {
 					Task minTaskByID = sameStart.get(0);
@@ -78,18 +77,18 @@ public class Compare {
 							}
 						}
 					}
-					sortedTopLevelTasks.add(minTaskByID);
+					sortedTasks.add(minTaskByID);
 					sameStart.remove(minTaskByID);
-					topLevelTasks.remove(minTaskByID);
+					tasks.remove(minTaskByID);
 				}
 			}
 		}
-		return sortedTopLevelTasks;
+		return sortedTasks;
 	}
 
-	public ArrayList<Task> getSubtasks(ArrayList<Task> sortedTasks,ArrayList<Task> taskList) {
-		ArrayList<Task> finalList = new ArrayList<Task>();
-		for(Task i:sortedTasks) {
+	public ArrayList<Task> sortSubtasks(ArrayList<Task> sortedTopLevelTasks,ArrayList<Task> taskList) {
+		ArrayList<Task> sortedList = new ArrayList<Task>();
+		for(Task i:sortedTopLevelTasks) {
 			ArrayList<Task> currentSubtask = new ArrayList<Task>();
 			int x = 0;
 			for (ArrayList<Task> j:subtasks) {
@@ -99,30 +98,32 @@ public class Compare {
 				}
 				x ++;
 			}
-			currentSubtask = sortTopLevelTasks(currentSubtask);
-			finalList.add(i);
+			currentSubtask = sortTasks(currentSubtask);
+			sortedList.add(i);
 			for (Task q:currentSubtask) {
-				finalList.add(q);
+				sortedList.add(q);
 			}
 			subtasks.remove(x);
 		}
-		return finalList;
+		return sortedList;
 	}
 	
 	public ArrayList<Task> sort() {
 		ArrayList<Task> sortedTasks = new ArrayList<Task>();
+		ArrayList<Task> sortedTopLevelTasks = new ArrayList<Task>();
 		ArrayList<Task> topLevelTasks = getTopLevelTasks(taskList);
-		sortedTasks = sortTopLevelTasks(topLevelTasks);
-		sortedTasks = getSubtasks(sortedTasks,taskList);
+		sortedTopLevelTasks = sortTasks(topLevelTasks);
+		sortedTasks = sortSubtasks(sortedTopLevelTasks,taskList);
 		return sortedTasks;
 	}
 	
-	public ArrayList<String[]> toStringTaskList(ArrayList<Task> taskList) {
-		ArrayList<String[]> stringTaskList = new ArrayList<String[]>();
+	public ArrayList<String[]> toArrayStringTaskList(ArrayList<Task> taskList) {
+
+		ArrayList<String[]> arrayStringTaskList = new ArrayList<String[]>();
 		for (Task i:taskList) {
-			stringTaskList.add(i.toArrayString());
+			arrayStringTaskList.add(i.toArrayString());
 		}
-		return stringTaskList;
+		return arrayStringTaskList;
 	}
 	
 }
