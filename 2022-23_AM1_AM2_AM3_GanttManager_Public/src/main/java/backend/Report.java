@@ -3,6 +3,7 @@ package backend;
 import java.io.IOException;
 import java.util.ArrayList;
 import createFile.CreateText;
+import createFile.CreateHtml;
 import file.Task;
 
 public class Report {
@@ -26,10 +27,11 @@ public class Report {
 			break;
 		/*case MD:
 			createMd(path);
-			break;
-		case HTML:
-			createHtml(path);
 			break;*/
+		case HTML:
+			CreateHtml html = new CreateHtml(path,sortedList,pColumnNames);
+			html.toHtml();
+			break;
 		default:
 			System.out.println("Error");
 			break;
