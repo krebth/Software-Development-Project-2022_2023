@@ -5,6 +5,8 @@ import file.OpenFile;
 import file.Task;
 import filters.FilterTasks;
 import sort.Compare;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainControllerFactory implements IMainController {
@@ -63,7 +65,13 @@ public class MainControllerFactory implements IMainController {
 
 	@Override
 	public int createReport(String path, ReportType type) {
-		// TODO Auto-generated method stub
+		Report test = new Report(path,type,sortedList,pColumnNames);
+		try {
+			test.makeFile();
+		} catch (IOException e) {
+			System.out.println("Error opening the file");
+			System.exit(0);
+		}
 		return 0;
 	}
 
