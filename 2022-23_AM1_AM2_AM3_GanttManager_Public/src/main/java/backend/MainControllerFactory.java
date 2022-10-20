@@ -67,12 +67,11 @@ public class MainControllerFactory implements IMainController {
 	public int createReport(String path, ReportType type) {
 		Report test = new Report(path,type,sortedList,pColumnNames);
 		try {
-			test.makeFile();
+			return test.makeFile();
 		} catch (IOException e) {
 			System.out.println("Error opening the file");
-			System.exit(0);
+			return -1;
 		}
-		return 0;
 	}
 
 

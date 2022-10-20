@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import createFile.CreateText;
 import createFile.CreateHtml;
+import createFile.CreateMarkdown;
 import file.Task;
 
 public class Report {
@@ -11,6 +12,7 @@ public class Report {
 	private String path;
 	private ArrayList<Task> sortedList;
 	private String[] pColumnNames;
+	private int lines;
 	
 	public Report(String path, ReportType type, ArrayList<Task> sortedList, String[] pColumnNames) {
 		this.type = type;
@@ -23,23 +25,20 @@ public class Report {
 		switch (type) {
 		case TEXT:
 			CreateText text = new CreateText(path, sortedList, pColumnNames);
-			text.toText();
+			lines = text.toText();
 			break;
-		/*case MD:
-			createMd(path);
-			break;*/
+		case MD:
+			CreateMarkdown markdown = new CreateMarkdown(path,sortedList,pColumnNames);
+			lines = markdown.toMarkdown();
+			break;
 		case HTML:
 			CreateHtml html = new CreateHtml(path,sortedList,pColumnNames);
-			html.toHtml();
+			lines = html.toHtml();
 			break;
 		default:
 			System.out.println("Error");
-			break;
+			return -1;
 		}
-		return 0;
+		return lines;
 	}
-	
-	/*public void createText(String path) {
-		File file = new File(path);
-	}*/
 }

@@ -20,7 +20,7 @@ public class CreateHtml {
 		this.lines = 0;
 	}
 	
-	public void toHtml() throws IOException {
+	public int toHtml() throws IOException {
 		FileOutputStream outputStream = new FileOutputStream(path);
 		PrintWriter outputWriter = new PrintWriter(outputStream);
 		outputWriter.println("<!doctype html>\n<html>\n<head>\n<meta http-equiv=\"Content-Type\" content\"text/html; charset=windows-1253\">\n<title>Gantt Project Data</title>\n</head>\n<body>\n\n<table>\n<tr>");
@@ -33,9 +33,10 @@ public class CreateHtml {
 		}
 		for (Task i:sortedList) {
 			outputWriter.println("<tr>\n<td>"+i.getID()+"</td>\t<td>"+i.getName()+"</td>\t<td>"+i.getMamaID()+"</td>\t<td>"+i.getStart()+"</td>\t<td>"+i.getEnd()+"</td>\t<td>"+i.getCost()+"</td>\t</tr>\n");
+			lines ++;
 		}
 		outputWriter.println("</table></body>\n</html>");
 		outputWriter.close();
-		
+		return lines;
 	}
 }
