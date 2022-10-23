@@ -23,9 +23,11 @@ public class Compare {
 			int minStart = -1;
 			int maxEnd = 0;
 			int totalCost = 0;
+			boolean hasSubtask = false;
 			ArrayList<Task> subtaskList = new ArrayList<Task>();
 			for (Task j:taskList) {
 				if (i.getID()==j.getMamaID()) {
+					hasSubtask = true;
 					if (minStart==-1) {
 						minStart = j.getStart();
 					}
@@ -39,9 +41,11 @@ public class Compare {
 					subtaskList.add(j);
 				}
 			}
-			i.setStart(minStart);
-			i.setEnd(maxEnd);
-			i.setCost(totalCost);
+			if (hasSubtask) {
+				i.setStart(minStart);
+				i.setEnd(maxEnd);
+				i.setCost(totalCost);
+			}
 			subtasks.add(subtaskList);
 		}
 		return topLevelTasks;
@@ -91,12 +95,14 @@ public class Compare {
 		for(Task i:sortedTopLevelTasks) {
 			ArrayList<Task> currentSubtask = new ArrayList<Task>();
 			int x = 0;
-			for (ArrayList<Task> j:subtasks) {
-				if (i.getID()==((j.get(0)).getMamaID())) {
-					currentSubtask = j;
-					break;
+			if (subtasks.get(0).size()!=0) {
+				for (ArrayList<Task> j:subtasks) {
+					if (i.getID()==((j.get(0)).getMamaID())) {
+						currentSubtask = j;
+						break;
+					}
+					x ++;
 				}
-				x ++;
 			}
 			currentSubtask = sortTasks(currentSubtask);
 			sortedList.add(i);
