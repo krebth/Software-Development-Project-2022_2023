@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 public class MainControllerFactory implements IMainController {
 	private ArrayList<Task> sortedList;
-	private String name = "";
-	private String prjName = "";
+	private String name = "Final";
+	private String prjName = "GanttManager Project";
 	private String[] pColumnNames = {"TaskId" , "TaskText", "MamaId","Start" , "End" , "Cost" };
 	
 	public IMainController createMainController() {

@@ -18,11 +18,11 @@ public class TopLevelTasksToTest {
 	
 	@Test
 	public final void testTopLevelTasks() {
-		String result = "	for\t\n"
+		String result = "Final\tfor\tGanttManager Project\n"
 				+ "TaskId	TaskText	MamaId	Start	End	Cost\t\n"
-				+ "100	Prepare Fry	0	1	12	60\t\n"
-				+ "200	Prepare the bread	0	10	12	20\t\n"
-				+ "300	Serve eggs	0	13	20	30\t\n";
+				+ "100	Prepare Fry	0	1	12	60.0\t\n"
+				+ "200	Prepare the bread	0	10	12	20.0\t\n"
+				+ "300	Serve eggs	0	13	20	30.0\t\n";
 		assertEquals("test if MainControllerFactory.getTopLevelTasks works", result, fileToTest.toString());
 	}
 

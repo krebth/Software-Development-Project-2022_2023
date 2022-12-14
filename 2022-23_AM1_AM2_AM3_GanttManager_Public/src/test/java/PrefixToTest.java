@@ -18,12 +18,12 @@ public class PrefixToTest {
 	
 	@Test
 	public final void testPrefix() {
-		String result = "	for\t\n"
+		String result = "Final\tfor\tGanttManager Project\n"
 				+ "TaskId	TaskText	MamaId	Start	End	Cost\t\n"
-				+ "100	Prepare Fry	0	1	12	60\t\n"
-				+ "200	Prepare the bread	0	10	12	20\t\n"
-				+ "301	Put bread in plate	300	13	13	10\t\n"
-				+ "302	Put eggs on bread	300	14	14	10\t\n";
+				+ "100	Prepare Fry	0	1	12	60.0\t\n"
+				+ "200	Prepare the bread	0	10	12	20.0\t\n"
+				+ "301	Put bread in plate	300	13	13	10.0\t\n"
+				+ "302	Put eggs on bread	300	14	14	10.0\t\n";
 		assertEquals("test if MainControllerFactory.getTasksByPrefix works", result, fileToTest.toString());
 	}
 

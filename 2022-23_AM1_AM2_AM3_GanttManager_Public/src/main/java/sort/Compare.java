@@ -22,7 +22,7 @@ public class Compare {
 		for(Task i:topLevelTasks) {
 			int minStart = -1;
 			int maxEnd = 0;
-			int totalCost = 0;
+			double totalCost = 0;
 			boolean hasSubtask = false;
 			ArrayList<Task> subtaskList = new ArrayList<Task>();
 			for (Task j:taskList) {

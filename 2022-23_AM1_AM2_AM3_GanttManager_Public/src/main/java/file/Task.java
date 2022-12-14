@@ -6,7 +6,7 @@ public class Task {
 	private int mamaID;
 	private int start;
 	private int end;
-	private int cost;
+	private double cost;
 	
 	public Task(int id, String name, int mamaID) {
 		this.id = id;
@@ -46,7 +46,7 @@ public class Task {
 		return end;
 	}
 	
-	public int getCost() {
+	public double getCost() {
 		return cost;
 	}
 	
@@ -54,8 +54,12 @@ public class Task {
 		return ""+num;
 	}
 	
+	public String toStringDouble(double num) {
+		return ""+num;
+	}
+	
 	public String[] toArrayString() {
-		String[] array = {toString(id),name,toString(mamaID),toString(start),toString(end),toString(cost)};
+		String[] array = {toString(id),name,toString(mamaID),toString(start),toString(end),toStringDouble(cost)};
 		return array;
 	}
 	
@@ -67,7 +71,7 @@ public class Task {
 		this.end = end;
 	}
 	
-	public void setCost(int cost) {
+	public void setCost(double cost) {
 		this.cost = cost;
 	}
 }

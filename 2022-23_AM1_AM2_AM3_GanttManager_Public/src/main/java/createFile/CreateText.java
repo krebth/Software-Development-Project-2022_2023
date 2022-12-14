@@ -25,13 +25,13 @@ public class CreateText {
 		PrintWriter outputWriter = new PrintWriter(outputStream);
 		for (String i:pColumnNames) {
 			if (i.equals(pColumnNames[pColumnNames.length-1])) {
-				outputWriter.println(i);
+				outputWriter.println(i+"\t");
 				break;
 			}
 			outputWriter.print(i+"\t");
 		}
 		for (Task i:sortedList) {
-			outputWriter.println(i.getID()+"\t"+i.getName()+"\t"+i.getMamaID()+"\t"+i.getStart()+"\t"+i.getEnd()+"\t"+i.getCost());
+			outputWriter.println(i.getID()+"\t"+i.getName()+"\t"+i.getMamaID()+"\t"+i.getStart()+"\t"+i.getEnd()+"\t"+i.getCost()+"\t");
 			lines ++;
 		}
 		outputWriter.close();

@@ -18,9 +18,9 @@ private SimpleTableModel fileToTest;
 	
 	@Test
 	public final void testId() {
-		String result = "	for\t\n"
+		String result = "Final\tfor\tGanttManager Project\n"
 				+ "TaskId	TaskText	MamaId	Start	End	Cost\t\n"
-				+ "105	Salt, pepper	100	5	5	10\t\n";
+				+ "105	Salt, pepper	100	5	5	10.0\t\n";
 		assertEquals("test if MainControllerFactory.getTaskById works", result, fileToTest.toString());
 	}
 }
