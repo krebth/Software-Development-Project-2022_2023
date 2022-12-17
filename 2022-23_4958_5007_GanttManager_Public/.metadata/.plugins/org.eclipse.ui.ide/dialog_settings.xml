@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="SmartImportWizard">
+		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
+		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
+		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\Θανάσης Κρεββατάς\Desktop\myy301\Software-Development-Project-2022_2023\2022-23_4958_5007_GanttManager_Public"/>
+			<item value="/home/thanasis/Desktop/myy301/Software-Development-Project-2022_2023/2022-23_AM1_AM2_AM3_GanttManager_Public"/>
+			<item value="/home/thanasis/Documents/Project_2022-2023/2022-23_AM1_AM2_AM3_GanttManager_Public"/>
+		</list>
+	</section>
+</section>
